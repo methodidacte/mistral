@@ -9,16 +9,15 @@ def create_markdown_file(ocr_response, output_filename = "OCR_output.md"):
       f.write(page.get("markdown", "No Markdown content found"))
 
 
-url = "https://mistral-ocr-2503-qlnma.eastus.models.ai.azure.com/v1/ocr"
+url = "https://<YOUR_ENDPOINT>.<AZURE_REGION>.models.ai.azure.com/v1/ocr"
 
 # Define the file URL
 file_url = "https://arxiv.org/pdf/2201.04234"  # Replace with your file URL
 image_url = "https://raw.githubusercontent.com/mistralai/cookbook/refs/heads/main/mistral/ocr/receipt.png"
-# image_url = "https://circedesign.com/cdn/shop/files/Prendre_soin_de_soi.png"
 image_url = "https://www.mykomela.com/images/aides/2021/mykomela-edition-ticket-caisse1-500-c.jpg"
 
 # Download the file from the URL
-file_response = requests.get(image_url)
+file_response = requests.get(image_url) # Choose file_url or image_url
 if file_response.status_code == 200:
     # Encode the file content in Base64
     base64_content = base64.b64encode(file_response.content).decode("utf-8")
@@ -38,7 +37,7 @@ payload = {
 # Set the headers (if needed)
 headers = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer ***"  # Replace with your API key
+    "Authorization": "Bearer <API_KEY>"
 }
 
 # Make the POST request
